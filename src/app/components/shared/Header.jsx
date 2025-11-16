@@ -1,4 +1,6 @@
+'use client'
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const Header = () => {
@@ -8,7 +10,11 @@ const Header = () => {
         <Link href={"/about"}>About</Link>
         <Link href={"/contact"}>Contact Us</Link>
     </div>
-  return (
+    
+    const pathName = usePathname();
+    console.log("pathName",pathName,);
+    if(!pathName.includes("dashboard")){
+        return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
@@ -48,6 +54,12 @@ const Header = () => {
       </div>
     </div>
   );
+    }
+    else{
+        return <></>
+    }
+    
+  
 };
 
 export default Header;

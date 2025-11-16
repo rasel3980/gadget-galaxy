@@ -1,3 +1,4 @@
+import NotFoundPage from "@/app/not-found";
 import Image from "next/image";
 import Link from "next/link";
 import { use } from "react";
@@ -164,7 +165,8 @@ const ProductDetails = ({ params }) => {
   ];
 
   const product = data.find((p) => p.id == id);
-  return (
+  if(product){
+    return (
     <div>
       <h1 className="text-2xl font-bold text-center">Details page</h1>
       <div className="card bg-base-100 mx-auto w-96 shadow-sm mt-10">
@@ -197,6 +199,13 @@ const ProductDetails = ({ params }) => {
       </div>
     </div>
   );
+  }
+  else{
+    return(
+        <NotFoundPage></NotFoundPage>
+    )
+  }
+  
 };
 
 export default ProductDetails;
