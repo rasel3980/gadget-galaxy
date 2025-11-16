@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { use } from "react";
 
-const Products = () => {
+const ProductDetails = ({ params }) => {
+  const { id } = use(params);
   const data = [
     {
       id: 1,
@@ -161,34 +162,41 @@ const Products = () => {
       isPopular: true,
     },
   ];
+
+  const product = data.find((p) => p.id == id);
   return (
     <div>
-      <h1 className="text-2xl font-bold text-center">This is products page</h1>
-      <div className="grid grid-cols-3 items-center justify-items-center gap-5 my-5">
-        {data.map((product) => {
-          return (
-            <div key={product.id} className="card bg-base-100 w-96 shadow-sm">
-              <figure>
-                <Image width={400} height={500} src={product.image} alt=""></Image>
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">
-                  {product.title}
-                  <div className="badge badge-secondary">{product.brand}</div>
-                </h2>
-                <p>
-                    {product.description}
-                </p>
-                <div className="card-actions justify-end">
-                    <Link href={`/products/${product.id}`}><button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">See Details</button></Link>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      <h1 className="text-2xl font-bold text-center">Details page</h1>
+      <div className="card bg-base-100 mx-auto w-96 shadow-sm mt-10">
+        <figure>
+          <Image width={400} height={500} src={product.image} alt=""></Image>
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">
+            {product.title}
+            <div className="badge badge-secondary">{product.brand}</div>
+          </h2>
+          <p>{product.description}</p>
+          <p>Brand: {product.brand}</p>
+          <p>Available: {product.quantity}</p>
+          <p>Rating: {product.rating}</p>
+          <p>Price: ${product.price}</p>
+          <div className="card-actions justify-end">
+            <Link href={`/products/${product.id}`}>
+              <button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
+                Buy Now
+              </button>
+            </Link>
+            <Link href={`/products/${product.id}`}>
+              <button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
+                Add to Cart
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Products;
+export default ProductDetails;
