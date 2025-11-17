@@ -4,16 +4,17 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 const Header = () => {
+  const pathname = usePathname();
     const navLinks = <div className="text-lg font-bold flex items-center gap-8">
-        <Link href={"/"}>Home</Link>
-        <Link href={"/products"}>Products</Link>
-        <Link href={"/about"}>About</Link>
-        <Link href={"/contact"}>Contact Us</Link>
+        <Link className={`link ${pathname === '/' ? 'text-blue-600 font-bold' : 'hover:text-blue-500 '}`} href={"/"}>Home</Link>
+        <Link className={`link ${pathname === '/products' ? 'text-blue-600 font-bold' : 'hover:text-blue-500'}`} href={"/products"}>Products</Link>
+        <Link className={`link ${pathname === '/about' ? 'text-blue-600 font-bold' : 'hover:text-blue-500'}`}  href={"/about"}>About</Link>
+        <Link className={`link ${pathname === '/contact' ? 'text-blue-600 font-bold' : 'hover:text-blue-500'}`}  href={"/contact"}>Contact Us</Link>
     </div>
     
-    const pathName = usePathname();
-    console.log("pathName",pathName,);
-    if(!pathName.includes("dashboard")){
+    
+    console.log("pathName",pathname,);
+    if(!pathname.includes("dashboard")){
         return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
