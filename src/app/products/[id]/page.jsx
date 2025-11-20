@@ -41,16 +41,12 @@ const ProductDetails = ({ params }) => {
           <p>Rating: {product.rating}</p>
           <p>Price: ${product.price}</p>
           <div className="card-actions justify-end">
-            <Link href={`/products/${product.id}`}>
               <button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
                 Buy Now
               </button>
-            </Link>
-            <Link href={`/products/${product.id}`}>
               <button onClick={()=>dispatch(addToCart(product))} className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
                 Add to Cart
               </button>
-            </Link>
           </div>
         </div>
       </div>
