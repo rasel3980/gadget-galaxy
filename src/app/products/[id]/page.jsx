@@ -1,11 +1,25 @@
+'use client'
 import NotFoundPage from "@/app/not-found";
 import Image from "next/image";
 import Link from "next/link";
 import { use } from "react";
 import data from "@/app/data/products.json"
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/app/redux/features/CartSlice";
+
+// export async function generateMetadata({ params} ) {
+//     const id = (await params).id
+//   const product = data.find((p) => p.id == id);
+ 
+//   return {
+//     title: product.title,
+//     description: product.description,
+//   }
+// }
 
 const ProductDetails = ({ params }) => {
   const { id } = use(params);
+  const dispatch = useDispatch()
 
   const product = data.find((p) => p.id == id);
   if(product){
@@ -33,7 +47,7 @@ const ProductDetails = ({ params }) => {
               </button>
             </Link>
             <Link href={`/products/${product.id}`}>
-              <button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
+              <button onClick={()=>dispatch(addToCart(product))} className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
                 Add to Cart
               </button>
             </Link>

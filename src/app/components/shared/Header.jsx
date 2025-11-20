@@ -1,10 +1,13 @@
 'use client'
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
+import {  useSelector } from "react-redux";
 
 const Header = () => {
+  const cartItems = useSelector((state)=>state.cart.items)
   const pathname = usePathname();
+  const router = useRouter()
     const navLinks = <div className="text-lg font-bold flex items-center gap-8">
         <Link className={`link ${pathname === '/' ? 'text-blue-600 font-bold' : 'hover:text-blue-500 '}`} href={"/"}>Home</Link>
         <Link className={`link ${pathname === '/products' ? 'text-blue-600 font-bold' : 'hover:text-blue-500'}`} href={"/products"}>Products</Link>
@@ -50,7 +53,11 @@ const Header = () => {
           {navLinks}
         </ul>
       </div>
-      <div className="navbar-end">
+      
+      <div className="navbar-end flex gap-5 items-center">
+        <div>
+        <button onClick={()=>router.push('/cart')} className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">Cart = {cartItems.length}</button>
+      </div>
         <button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">Login</button>
       </div>
     </div>
