@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-          <Header></Header>
+          <div className="sticky top-0 z-50 bg-white/30 backdrop-blur-lg"><Header></Header></div>
         <main className="min-h-screen w-11/12 mx-auto my-10">
           
             {children}

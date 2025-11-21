@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import {  useSelector } from "react-redux";
+import { FaCartArrowDown } from "react-icons/fa";
 
 const Header = () => {
   const cartItems = useSelector((state)=>state.cart.items)
@@ -54,9 +55,12 @@ const Header = () => {
         </ul>
       </div>
       
-      <div className="navbar-end flex gap-5 items-center">
-        <div>
-        <button onClick={()=>router.push('/cart')} className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">Cart = {cartItems.length}</button>
+      <div className="navbar-end flex gap-8 items-center">
+        <div onClick={()=>router.push('/cart')} className="relative cursor-pointer">
+          <FaCartArrowDown size={30} />
+          <div className="absolute -top-3 -right-3">
+          {cartItems.length}
+          </div>
       </div>
         <button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">Login</button>
       </div>
