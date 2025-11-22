@@ -1,33 +1,93 @@
-import { decrementQuantity, deleteCart, incrementQuantity } from "@/app/redux/features/CartSlice";
+import {
+  decrementQuantity,
+  deleteCart,
+  incrementQuantity,
+} from "@/app/redux/features/CartSlice";
 import Image from "next/image";
 import React from "react";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 
-const CartDetails = ({item}) => {
+const CartDetails = ({ item }) => {
   const dispatch = useDispatch();
-  
+
+  const handleDelete = () => {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "This Product will be removed!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          dispatch(deleteCart(item.id))
+          swalWithBootstrapButtons.fire({
+            title: "Deleted!😰",
+            text: "Your Product has been deleted.",
+            icon: "success",
+          });
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your Product is safe :)😎",
+            icon: "error",
+          });
+        }
+      });
+  };
+
   return (
-    <div className=" bg-base-100 mx-auto flex justify-between items-center border border-red-800 shadow-sm mt-10">
-      <div>
-        <figure>
-        <Image width={200} height={300} src={item.image} alt=""></Image>
-      </figure>
+    <div className=" bg-base-100 px-3 flex items-center justify-between  shadow-sm hover:shadow-md hover:shadow-red-400 mt-10">
+      <div className="flex items-center gap-8">
+        <figure className="flex gap-4 items-center">
+          <input className="w-6 h-6 " type="checkbox" name="" id="" />
+          <Image width={100} height={300} src={item.image} alt=""></Image>
+        </figure>
+        <div>
+          <h2 className="card-title">
+            {item.title}
+            <div className="badge badge-secondary">{item.brand}</div>
+          </h2>
+          <p>Price: ${item.price}</p>
+        </div>
       </div>
-      <div className="card-body">
-        <h2 className="card-title">
-          {item.title}
-          <div className="badge badge-secondary">{item.brand}</div>
-        </h2>
-        <p>Price: ${item.price}</p>
-        <div className="card-actions justify-end gap-10">
-            <button onClick={()=>dispatch(deleteCart(item.id))} className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
-              Delete
-            </button>
-            <div className="flex items-center gap-5">
-              <button onClick={()=>dispatch((decrementQuantity(item.id)))} className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">-</button>
-              <button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">{item.quantity}</button>
-              <button onClick={()=>dispatch(incrementQuantity(item.id))} className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">+</button>
-            </div>
+      <div>
+        <div className="card-actions items-center mr-7 gap-10">
+          <button
+            onClick={handleDelete}
+            className="px-4 py-1 bg-red-600 text-white rounded cursor-pointer"
+          >
+            Delete
+          </button>
+          <div className="flex items-center gap-5">
+            <p
+              onClick={() => dispatch(decrementQuantity(item.id))}
+              className="text-5xl cursor-pointer"
+            >
+              -
+            </p>
+            <p className="text-xl">{item.quantity}</p>
+            <p
+              onClick={() => dispatch(incrementQuantity(item.id))}
+              className=" text-3xl cursor-pointer"
+            >
+              +
+            </p>
+          </div>
         </div>
       </div>
     </div>
