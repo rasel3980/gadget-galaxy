@@ -6,6 +6,7 @@ const CartPage = () => {
     const cartItems = useSelector((state)=>state.cart.items);
     const totalPrice = cartItems.reduce((sum,item)=>sum + (item.price * item.quantity),0).toFixed(2)
   const totalQuantity = cartItems.reduce((sum,item)=> sum + item.quantity,0)
+  
     return (
         <div>
             {

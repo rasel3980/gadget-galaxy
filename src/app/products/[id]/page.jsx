@@ -2,8 +2,9 @@
 import NotFoundPage from "@/app/not-found";
 import Image from "next/image";
 import { use } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/app/redux/features/CartSlice";
+import Swal from "sweetalert2";
 
 // export async function generateMetadata({ params} ) {
 //     const id = (await params).id
@@ -16,10 +17,23 @@ import { addToCart } from "@/app/redux/features/CartSlice";
 // }
 
 const ProductDetails = ({ params }) => {
-  const { id } = use(params);
+  const {items,loading,error} = useSelector((state)=>state.data);
   const dispatch = useDispatch()
 
-  const product = data.find((p) => p.id == id);
+  const handleAddToCart = () =>{
+      dispatch(addToCart(product))
+      Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Product added to Cart 😉",
+    showConfirmButton: false,
+    timer: 1200
+  });
+    }
+
+  const { id } = use(params);
+
+  const product = items.find((p) => p.id == id);
   if(product){
     return (
     <div>
@@ -42,7 +56,7 @@ const ProductDetails = ({ params }) => {
               <button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
                 Buy Now
               </button>
-              <button onClick={()=>dispatch(addToCart(product))} className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
+              <button onClick={handleAddToCart} className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
                 Add to Cart
               </button>
           </div>
