@@ -1,5 +1,4 @@
 
-import data from "@/app/data/products.json";
 import SearchBar from "./components/SearchBar";
 import ProductCard from "./components/ProductCard";
 

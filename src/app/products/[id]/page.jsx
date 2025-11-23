@@ -1,9 +1,7 @@
 'use client'
 import NotFoundPage from "@/app/not-found";
 import Image from "next/image";
-import Link from "next/link";
 import { use } from "react";
-import data from "@/app/data/products.json"
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/app/redux/features/CartSlice";
 
