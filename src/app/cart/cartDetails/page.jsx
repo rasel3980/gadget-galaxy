@@ -5,11 +5,13 @@ import {
 } from "@/app/redux/features/CartSlice";
 import Image from "next/image";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
 const CartDetails = ({ item }) => {
   const dispatch = useDispatch();
+  const {items} = useSelector((state)=>state.cart)
+  console.log("cart item",items);
 
   const handleDelete = () => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -80,7 +82,7 @@ const CartDetails = ({ item }) => {
             >
               -
             </p>
-            <p className="text-xl">{item.quantity}</p>
+            <p className="text-xl">{item.cartQuantity}</p>
             <p
               onClick={() => dispatch(incrementQuantity(item.id))}
               className=" text-3xl cursor-pointer"

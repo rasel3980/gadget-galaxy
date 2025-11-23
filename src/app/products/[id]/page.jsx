@@ -20,6 +20,13 @@ const ProductDetails = ({ params }) => {
   const {items,loading,error} = useSelector((state)=>state.data);
   const dispatch = useDispatch()
 
+  if(loading){
+    return <p>Loading.......</p>
+  }
+  if(error){
+    return <p>{error}</p>
+  }
+
   const handleAddToCart = () =>{
       dispatch(addToCart(product))
       Swal.fire({

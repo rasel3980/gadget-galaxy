@@ -1,12 +1,12 @@
 'use client'
-import SearchBar from "./components/SearchBar";
 import ProductCard from "./components/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchProducts } from "../redux/features/fetchDataSlice";
 
 const Products =  () => {
   const dispatch = useDispatch()
+  const [search,setSearch] = useState("")
   const {items,loading,error} = useSelector((state)=>state.data)
   console.log('products',items);
 
@@ -20,19 +20,26 @@ const Products =  () => {
   if(error){
     return <p>{error}</p>
   }
-  // const search = await searchParams?.search || "";
-  // console.log("search", search);
+  console.log("search", search);
 
-  // const filtered = data.filter((product) =>
-  //   product.title.toLowerCase().includes(search.toLowerCase())
-  // );
+  const filtered = items.filter((product) =>
+    product.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div>
       <h1 className="text-2xl font-bold text-center">This is products page</h1>
-      {/* <SearchBar search={search}></SearchBar> */}
+      <div className="text-center mt-5">
+      <input
+        onChange={(e) => setSearch(e.target.value)}
+        className="px-3  border rounded w-1/3"
+        type="text"
+        value={search}
+        placeholder="Search here"
+      />
+    </div>
       <div className="grid grid-cols-3 items-center justify-items-center gap-5 my-5">
-        {items.map((product) => <ProductCard key={product.id} product={product}></ProductCard>)}
+        {filtered.map((product) => <ProductCard key={product.id} product={product}></ProductCard>)}
       </div>
     </div>
   );
