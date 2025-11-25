@@ -18,8 +18,8 @@ const CartPage = () => {
             }
             </div>
             <div className='flex justify-between items-center mt-6 w-10/12 mx-auto'>
-                <button className='text-2xl font-bold'>Total Price: ${totalPrice}</button>
-                <button className='text-2xl font-bold'>Total Quantity: {totalQuantity}</button>
+                <button className='md:text-2xl font-bold'>Total Price:- ${totalPrice}</button>
+                <button className='md:text-2xl font-bold'>Total Quantity:- {totalQuantity}</button>
             </div>
                 </>):(<>
                 <div className='text-center mt-12'>

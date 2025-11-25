@@ -8,6 +8,9 @@ import Image from "next/image";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import { CiCirclePlus } from "react-icons/ci";
+import { CiCircleMinus } from "react-icons/ci";
+import { MdDelete } from "react-icons/md";
 
 const CartDetails = ({ item }) => {
   const dispatch = useDispatch();
@@ -55,40 +58,38 @@ const CartDetails = ({ item }) => {
 
   return (
     <div className=" bg-base-100 px-3 flex items-center justify-between  shadow-sm hover:shadow-md hover:shadow-red-400 mt-10">
-      <div className="flex items-center gap-8">
-        <figure className="flex gap-4 items-center">
-          <input onChange={()=>dispatch(toggleSelected(item.id))} checked={item.selected} className="w-6 h-6 " type="checkbox" name="" id="" />
+      <div className="flex items-center md:gap-8 gap-3">
+        <figure className="flex md:gap-4 gap-2 items-center">
+          <input onChange={()=>dispatch(toggleSelected(item.id))} checked={item.selected} className="md:w-6 md:h-6 " type="checkbox" name="" id="" />
           <Image width={100} height={300} src={item.image} alt=""></Image>
         </figure>
         <div>
-          <h2 className="card-title">
+          <h2 className="md:card-title text-sm md:text-lg">
             {item.title}
-            <div className="badge badge-secondary">{item.brand}</div>
+            <div className="md:badge hidden md:block md:badge-secondary">{item.brand}</div>
           </h2>
-          <p>Price: ${item.price}</p>
+          <p className="md:text-md text-xs font-bold">Price: ${item.price}</p>
         </div>
       </div>
       <div>
-        <div className="card-actions items-center mr-7 gap-10">
-          <button
-            onClick={handleDelete}
-            className="px-4 py-1 bg-red-600 text-white rounded cursor-pointer"
-          >
-            Delete
-          </button>
-          <div className="flex items-center gap-5">
+        <div className="md:card-actions flex items-center justify-center  md:gap-10 gap-4">
+          <div>
+            <MdDelete size={25} onClick={handleDelete} className=" text-red-600 cursor-pointer" />
+          </div>
+          <div className="flex items-center justify-center gap-2 md:gap-5">
             <p
               onClick={() => dispatch(decrementQuantity(item.id))}
-              className="text-5xl cursor-pointer"
+              className="cursor-pointer"
             >
-              -
+              <CiCircleMinus size={30} />
+
             </p>
             <p className="text-xl">{item.cartQuantity}</p>
             <p
               onClick={() => dispatch(incrementQuantity(item.id))}
-              className=" text-3xl cursor-pointer"
+              className="cursor-pointer"
             >
-              +
+              <CiCirclePlus size={30} />
             </p>
           </div>
         </div>

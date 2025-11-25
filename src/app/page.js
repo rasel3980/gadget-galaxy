@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-center ">Hello world</h1>
-      <div className="grid grid-cols-3 gap-5 mt-10">
+      <div className="grid md:grid-cols-3 justify-items-center gap-5 my-10">
         {
         filteredPopular.map((p)=><PopularProducts key={p.id} product={p}></PopularProducts>)
       }

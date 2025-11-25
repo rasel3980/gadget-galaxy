@@ -9,7 +9,7 @@ const Header = () => {
   const cartItems = useSelector((state)=>state.cart.items)
   const pathname = usePathname();
   const router = useRouter()
-    const navLinks = <div className="text-lg font-bold flex items-center gap-8">
+    const navLinks = <div className="md:text-lg text-md font-bold flex items-center gap-3 md:gap-8">
         <Link className={`link ${pathname === '/' ? 'text-blue-600 font-bold' : 'hover:text-blue-500 '}`} href={"/"}>Home</Link>
         <Link className={`link ${pathname === '/products' ? 'text-blue-600 font-bold' : 'hover:text-blue-500'}`} href={"/products"}>Products</Link>
         <Link className={`link ${pathname === '/about' ? 'text-blue-600 font-bold' : 'hover:text-blue-500'}`}  href={"/about"}>About</Link>
@@ -20,7 +20,7 @@ const Header = () => {
     console.log("pathName",pathname,);
     if(!pathname.includes("dashboard")){
         return (
-    <div className="navbar px-10 shadow-sm">
+    <div className="navbar md:px-10 px-3 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -47,7 +47,7 @@ const Header = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-2xl font-bold">Gadget Galaxy</a>
+        <a className="btn btn-ghost md:text-2xl text-xl font-bold">Gadget Galaxy</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -57,15 +57,15 @@ const Header = () => {
       
       <div className="navbar-end flex gap-8 items-center">
         <div onClick={()=>router.push('/cart')} className="relative cursor-pointer">
-          <FaCartArrowDown size={30} />
+          <FaCartArrowDown className="md:text-2xl text-lg" />
           <div className="absolute -top-3 -right-3">
           {cartItems.length}
           </div>
       </div>
       <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full border-3 border-green-600  flex justify-center items-center">
-          <button className="cursor-pointer"><FaUserCircle size={30} /></button>
+        <div className="md:w-10 w-8 rounded-full border-2 border-red-600  flex justify-center items-center">
+          <button className="cursor-pointer md:text-2xl text-lg"><FaUserCircle /></button>
         </div>
       </div>
       <ul

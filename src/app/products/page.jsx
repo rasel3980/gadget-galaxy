@@ -38,7 +38,7 @@ const Products =  () => {
         placeholder="Search here"
       />
     </div>
-      <div className="grid grid-cols-3 items-center justify-items-center gap-5 my-5">
+      <div className="grid md:grid-cols-3 items-center justify-items-center gap-5 my-5">
         {filtered.map((product) => <ProductCard key={product.id} product={product}></ProductCard>)}
       </div>
     </div>
