@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import {  useSelector } from "react-redux";
-import { FaCartArrowDown } from "react-icons/fa";
+import { FaCartArrowDown, FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
   const cartItems = useSelector((state)=>state.cart.items)
@@ -20,7 +20,7 @@ const Header = () => {
     console.log("pathName",pathname,);
     if(!pathname.includes("dashboard")){
         return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar px-10 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -62,7 +62,26 @@ const Header = () => {
           {cartItems.length}
           </div>
       </div>
-        <button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">Login</button>
+      <div className="dropdown dropdown-end">
+      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full border-3 border-green-600  flex justify-center items-center">
+          <button className="cursor-pointer"><FaUserCircle size={30} /></button>
+        </div>
+      </div>
+      <ul
+        tabIndex="-1"
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <li>
+          <a className="justify-between">
+            Profile
+            <span className="badge">New</span>
+          </a>
+        </li>
+        <li><Link href={"user-dashboard"}>Dashboard</Link></li>
+        <li><a>Settings</a></li>
+        <li><a>Logout</a></li>
+      </ul>
+    </div>
       </div>
     </div>
   );
