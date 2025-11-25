@@ -2,6 +2,7 @@ import {
   decrementQuantity,
   deleteCart,
   incrementQuantity,
+  toggleSelected,
 } from "@/app/redux/features/CartSlice";
 import Image from "next/image";
 import React from "react";
@@ -56,7 +57,7 @@ const CartDetails = ({ item }) => {
     <div className=" bg-base-100 px-3 flex items-center justify-between  shadow-sm hover:shadow-md hover:shadow-red-400 mt-10">
       <div className="flex items-center gap-8">
         <figure className="flex gap-4 items-center">
-          <input className="w-6 h-6 " type="checkbox" name="" id="" />
+          <input onChange={()=>dispatch(toggleSelected(item.id))} checked={item.selected} className="w-6 h-6 " type="checkbox" name="" id="" />
           <Image width={100} height={300} src={item.image} alt=""></Image>
         </figure>
         <div>

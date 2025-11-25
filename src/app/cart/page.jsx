@@ -4,8 +4,9 @@ import CartDetails from './cartDetails/page';
 
 const CartPage = () => {
     const cartItems = useSelector((state)=>state.cart.items);
-    const totalPrice = cartItems.reduce((sum,item)=>sum + (item.price * item.quantity),0).toFixed(2)
-  const totalQuantity = cartItems.reduce((sum,item)=> sum + item.cartQuantity,0)
+    const isSelected = cartItems.filter(item=>item.selected)
+    const totalPrice = isSelected.reduce((sum,item)=>sum + (item.price * item.cartQuantity),0).toFixed(2)
+  const totalQuantity = isSelected.reduce((sum,item)=> sum + item.cartQuantity,0)
   
     return (
         <div>

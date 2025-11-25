@@ -13,7 +13,8 @@ export const CartSlice = createSlice({
             const exist = state.items.find(item=> item.id=== product.id);
 
             if(exist){
-                exist.cartQuantity += 1;
+                exist.cartQuantity += 1 ;
+                exist.quantity -= 1;
             }
             else{
                 state.items.push({...product,cartQuantity:1})
@@ -33,11 +34,18 @@ export const CartSlice = createSlice({
             if(item){
                 item.cartQuantity -= 1;
             }
-        }
+        },
+        toggleSelected:(state,action)=>{
+            const item = state.items.find((p)=>p.id === action.payload);
+            if(item){
+                item.selected = !item.selected
+            }
+        },
+        
     }
 
 
 })
 
-export const {addToCart,deleteCart,incrementQuantity,decrementQuantity} = CartSlice.actions
+export const {addToCart,deleteCart,incrementQuantity,decrementQuantity,toggleSelected} = CartSlice.actions
 export default CartSlice.reducer;

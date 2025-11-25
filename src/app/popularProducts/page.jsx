@@ -2,13 +2,37 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { addToCart } from '../redux/features/CartSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
+import { stockReduce } from '../redux/features/fetchDataSlice';
 
 const PopularProducts = ({product}) => {
     const dispatch = useDispatch()
+    const {items} = useSelector((state)=>state.data);
+    const updateProduct = items.find((p)=>p.id === product.id)
     const handleAddToCart = () =>{
+      if (updateProduct.quantity <= 0) {
+      Swal.fire({
+        title: "Sorry😞 Out of Stock",
+        showClass: {
+          popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `,
+        },
+        hideClass: {
+          popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `,
+        },
+      });
+      return;
+    }
       dispatch(addToCart(product))
+      dispatch(stockReduce(product.id))
       Swal.fire({
     position: "top-end",
     icon: "success",
@@ -29,6 +53,7 @@ const PopularProducts = ({product}) => {
             <div className="badge badge-secondary">{product.brand}</div>
           </h2>
           <p>{product.description}</p>
+          <p className="font-bold">Stock: {product.quantity}</p>
           <p className="font-bold">Price: ${product.price}</p>
           <div className="card-actions justify-end">
             <button
