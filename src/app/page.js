@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./redux/features/fetchDataSlice";
 import PopularProducts from "./popularProducts/page";
+import HomeCarousel from "./components/carousel/page";
 
 export default function Home() {
   const dispatch = useDispatch()
@@ -21,7 +22,7 @@ export default function Home() {
   console.log("items",items);
   return (
     <div>
-      <h1 className="text-2xl font-bold text-center ">Hello world</h1>
+      <HomeCarousel></HomeCarousel>
       <div className="grid md:grid-cols-3 justify-items-center gap-5 my-10">
         {
         filteredPopular.map((p)=><PopularProducts key={p.id} product={p}></PopularProducts>)
