@@ -27,9 +27,9 @@ const Products =  () => {
   );
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-center">This is products page</h1>
-      <div className="text-center mt-5">
+    <div className="my-10">
+      <h1 className="text-3xl font-bold text-center">Find the Perfect Gadget for You</h1>
+      <div className="text-center my-8">
       <input
         onChange={(e) => setSearch(e.target.value)}
         className="px-3  border rounded w-1/3"

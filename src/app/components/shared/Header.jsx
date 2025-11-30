@@ -4,11 +4,22 @@ import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import {  useSelector } from "react-redux";
 import { FaCartArrowDown, FaUserCircle } from "react-icons/fa";
+import LoginButton from "../LoginButton";
+import { useSession } from "next-auth/react";
+import SignOut from "../SignOut";
 
 const Header = () => {
   const cartItems = useSelector((state)=>state.cart.items)
   const pathname = usePathname();
-  const router = useRouter()
+  const router = useRouter();
+  const session = useSession();
+  if(session.status==="authenticated"){
+    console.log("yesssss");
+  }
+  else{
+    console.log("Noooooooo");
+  }
+  console.log("session",session);
     const navLinks = <div className="md:text-lg text-md font-bold flex items-center gap-3 md:gap-8">
         <Link className={`link ${pathname === '/' ? 'text-blue-600 font-bold' : 'hover:text-blue-500 '}`} href={"/"}>Home</Link>
         <Link className={`link ${pathname === '/products' ? 'text-blue-600 font-bold' : 'hover:text-blue-500'}`} href={"/products"}>Products</Link>
@@ -62,9 +73,10 @@ const Header = () => {
           {cartItems.length}
           </div>
       </div>
-      <div className="dropdown dropdown-end">
+
+          {session.status === "authenticated" ? <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="md:w-10 w-8 rounded-full border-2 border-red-600  flex justify-center items-center">
+            <div className="md:w-10 w-8 rounded-full border-5 border-green-600  flex justify-center items-center">
           <button className="cursor-pointer md:text-2xl text-lg"><FaUserCircle /></button>
         </div>
       </div>
@@ -79,9 +91,9 @@ const Header = () => {
         </li>
         <li><Link href={"user-dashboard"}>Dashboard</Link></li>
         <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li><SignOut></SignOut></li>
       </ul>
-    </div>
+    </div>:<LoginButton></LoginButton> }
       </div>
     </div>
   );

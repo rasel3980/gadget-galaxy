@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./components/shared/Header";
 import Footer from "./components/shared/Footer";
 import ReduxProvider from "./redux/Provider";
+import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100`}
       >
+        <NextAuthSessionProvider>
         <ReduxProvider>
           <div className="sticky top-0 z-50 bg-white/30 backdrop-blur-md shadow-lg"><Header></Header></div>
         <main className="min-h-screen w-11/12 mx-auto">
@@ -36,6 +38,7 @@ export default function RootLayout({ children }) {
         </main>
         <Footer></Footer>
         </ReduxProvider>
+        </NextAuthSessionProvider>
         
       </body>
     </html>
