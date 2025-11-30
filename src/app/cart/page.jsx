@@ -17,9 +17,10 @@ const CartPage = () => {
                 cartItems.map((item)=><CartDetails key={item.id} item={item}></CartDetails>)
             }
             </div>
-            <div className='flex justify-between items-center mt-6 w-10/12 mx-auto'>
+            <div className='flex justify-between gap-5 items-center mt-6 md:w-10/12 mx-auto'>
                 <button className='md:text-2xl font-bold'>Total Price:- ${totalPrice}</button>
-                <button className='md:text-2xl font-bold'>Total Quantity:- {totalQuantity}</button>
+                <button className='md:text-2xl font-bold bg-green-600 text-white px-4 py-1 rounded-lg cursor-pointer hover:bg-green-800'>Pay Now</button>
+                <button className='md:text-2xl font-bold'>Total Product:- {totalQuantity}</button>
             </div>
                 </>):(<>
                 <div className='text-center mt-12'>

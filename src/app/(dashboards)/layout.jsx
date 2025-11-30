@@ -6,13 +6,14 @@ import { MdPayment } from "react-icons/md";
 import { IoAnalyticsSharp } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 import { CiSettings } from "react-icons/ci";
+import Link from 'next/link';
 const DashboardLayout = ({children}) => {
     return (
         <div className='grid grid-cols-12'>
             <div className='col-span-2 border-r-2'>
             <ul className='space-y-14 pt-5'>
                 <li>
-                    <a  className='flex items-center gap-2'><CgProfile />Profile</a>
+                    <Link href={"/user-dashboard/userProfile"} className='flex items-center gap-2'><CgProfile />Profile</Link>
                 </li>
                 <li>
                     <a className='flex items-center gap-2'><BiSolidPurchaseTag />Purchase History</a>
