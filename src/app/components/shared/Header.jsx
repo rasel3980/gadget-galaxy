@@ -4,9 +4,10 @@ import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import {  useSelector } from "react-redux";
 import { FaCartArrowDown, FaUserCircle } from "react-icons/fa";
-import LoginButton from "../LoginButton";
 import { useSession } from "next-auth/react";
-import SignOut from "../SignOut";
+import SignOut from "../../(authPages)/login/SignOut";
+import Register from "@/app/(authPages)/login/Register";
+import Image from "next/image";
 
 const Header = () => {
   const cartItems = useSelector((state)=>state.cart.items)
@@ -76,8 +77,8 @@ const Header = () => {
 
           {session.status === "authenticated" ? <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="md:w-10 w-8 rounded-full border-5 border-green-600  flex justify-center items-center">
-          <button className="cursor-pointer md:text-2xl text-lg"><FaUserCircle /></button>
+            <div className="md:w-10 w-8 rounded-full flex justify-center items-center">
+              <Image alt="profile" width={100} height={100} src={session.data.user.image}></Image>
         </div>
       </div>
       <ul
@@ -93,7 +94,7 @@ const Header = () => {
         <li><a>Settings</a></li>
         <li><SignOut></SignOut></li>
       </ul>
-    </div>:<LoginButton></LoginButton> }
+    </div>:<Register></Register> }
       </div>
     </div>
   );
