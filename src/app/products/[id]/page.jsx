@@ -71,7 +71,7 @@ const ProductDetails = ({ params }) => {
     return (
     <div>
       <h1 className="text-2xl font-bold text-center">Products details</h1>
-      <div className="card bg-base-100 mx-auto w-96 shadow-sm mt-10">
+      <div className="card bg-base-100 mx-auto w-96 shadow-lg hover:shadow-red-600 mt-10">
         <figure>
           <Image width={400} height={500} src={product.image} alt=""></Image>
         </figure>
@@ -85,11 +85,11 @@ const ProductDetails = ({ params }) => {
           <p>Stock: {product.quantity}</p>
           <p>Rating: {product.rating}</p>
           <p>Price: ${product.price}</p>
-          <div className="card-actions justify-end">
-              <button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
+          <div className="card-actions justify-end gap-4">
+              <button className="px-4 py-1 hover:bg-blue-900 rounded-tr-2xl rounded-bl-2xl bg-blue-600 text-white rounded cursor-pointer">
                 Buy Now
               </button>
-              <button onClick={handleAddToCart} className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
+              <button onClick={handleAddToCart} className="px-4 py-1 hover:bg-blue-900 rounded-tr-2xl rounded-bl-2xl bg-blue-600 text-white rounded cursor-pointer">
                 Add to Cart
               </button>
           </div>

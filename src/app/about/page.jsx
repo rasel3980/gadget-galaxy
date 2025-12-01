@@ -48,21 +48,21 @@ const About = () => {
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8 mt-10">
-          <div className="bg-white shadow p-6 rounded-xl">
+          <div className="bg-white shadow-lg hover:shadow-red-600 p-6 rounded-xl">
             <h3 className="text-xl font-bold text-blue-600">Top Quality</h3>
             <p className="text-gray-600 mt-2">
               All gadgets are hand-picked & tested for best performance.
             </p>
           </div>
 
-          <div className="bg-white shadow p-6 rounded-xl">
+          <div className="bg-white shadow-lg hover:shadow-red-600 p-6 rounded-xl">
             <h3 className="text-xl font-bold text-blue-600">Fast Delivery</h3>
             <p className="text-gray-600 mt-2">
               Get your favorite gadgets delivered right to your doorstep.
             </p>
           </div>
 
-          <div className="bg-white shadow p-6 rounded-xl">
+          <div className="bg-white shadow-lg hover:shadow-red-600 p-6 rounded-xl">
             <h3 className="text-xl font-bold text-blue-600">Customer Support</h3>
             <p className="text-gray-600 mt-2">
               We are always here to help you with any questions or issues.

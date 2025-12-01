@@ -43,7 +43,7 @@ const PopularProducts = ({product}) => {
     }
     return (
         <div>
-            <div className="card bg-base-100 w-96 h-[520px] shadow-sm">
+            <div className="card bg-base-100 w-96 h-[520px] shadow-lg hover:shadow-red-600">
         <div>
           <Image width={400} height={400} className="h-72" src={product.image} alt=""></Image>
         </div>
@@ -58,12 +58,12 @@ const PopularProducts = ({product}) => {
           <div className="card-actions justify-end">
             <button
               onClick={handleAddToCart}
-              className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer"
+              className="px-4 py-1 hover:bg-blue-900 rounded-tr-2xl rounded-bl-2xl bg-blue-600 text-white rounded cursor-pointer"
             >
               Add to Cart
             </button>
             <Link href={`/products/${product.id}`}>
-              <button className="px-4 py-1 bg-blue-600 text-white rounded cursor-pointer">
+              <button className="px-4 py-1 hover:bg-blue-900 rounded-tr-2xl rounded-bl-2xl bg-blue-600 text-white rounded cursor-pointer">
                 See Details
               </button>
             </Link>
