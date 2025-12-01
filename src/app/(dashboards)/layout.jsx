@@ -13,7 +13,7 @@ const DashboardLayout = ({children}) => {
             <div className='col-span-2 border-r-2'>
             <ul className='space-y-14 pt-5'>
                 <li>
-                    <Link href={"/user-dashboard/userProfile"} className='flex items-center gap-2'><CgProfile />Profile</Link>
+                    <a className='flex items-center gap-2'><CgProfile />Profile</a>
                 </li>
                 <li>
                     <a className='flex items-center gap-2'><BiSolidPurchaseTag />Purchase History</a>
