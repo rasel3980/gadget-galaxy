@@ -1,6 +1,6 @@
 'use client'
 import { useSelector } from 'react-redux';
-import CartDetails from './cartDetails/page';
+import CartDetails from '../components/CartDetails';
 
 const CartPage = () => {
     const cartItems = useSelector((state)=>state.cart.items);

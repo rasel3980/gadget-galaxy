@@ -1,5 +1,5 @@
 'use client'
-import ProductCard from "./components/ProductCard";
+import ProductCard from "../components/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../redux/features/fetchDataSlice";

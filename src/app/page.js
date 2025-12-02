@@ -2,8 +2,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./redux/features/fetchDataSlice";
-import PopularProducts from "./popularProducts/page";
-import HomeCarousel from "./components/carousel/page";
+import PopularProducts from "./components/PopularProducts";
+import HomeCarousel from "./components/Carousel";
 
 export default function Home() {
   const dispatch = useDispatch()
