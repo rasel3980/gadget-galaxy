@@ -61,7 +61,7 @@ const CartDetails = ({ item }) => {
     <div className=" bg-base-100 px-3 flex items-center justify-between  shadow-sm hover:shadow-md hover:shadow-red-400 mt-10">
       <div className="flex items-center md:gap-8 gap-3">
         <figure className="flex md:gap-4 gap-2 items-center">
-          <input onChange={()=>dispatch(toggleSelected(item.id))} checked={item.selected} className="md:w-6 md:h-6 " type="checkbox" name="" id="" />
+          <input onChange={()=>dispatch(toggleSelected(item.id))} checked={item?.selected || false} className="md:w-6 md:h-6 " type="checkbox" name="" id="" />
           <Image width={100} height={300} src={item.image} alt=""></Image>
         </figure>
         <div>
