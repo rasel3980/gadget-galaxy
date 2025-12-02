@@ -10,6 +10,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'extremegadgets.com.bd',
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
       },
       {
