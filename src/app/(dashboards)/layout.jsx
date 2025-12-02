@@ -6,7 +6,6 @@ import { MdPayment } from "react-icons/md";
 import { IoAnalyticsSharp } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 import { CiSettings } from "react-icons/ci";
-import Link from 'next/link';
 const DashboardLayout = ({children}) => {
     return (
         <div className='grid grid-cols-12'>
