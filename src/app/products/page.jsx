@@ -28,7 +28,7 @@ const Products =  () => {
 
   return (
     <div className="my-10">
-      <h1 className="text-3xl font-bold text-center">Find the Perfect Gadget for You</h1>
+      <h1 className="text-3xl font-bold text-center text-blue-700">Find the Perfect Gadget for You</h1>
       <div className="text-center my-8">
       <input
         onChange={(e) => setSearch(e.target.value)}
