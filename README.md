@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# **Gadget-Galaxy**
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Gadget Galaxy is a modern and dynamic digital platform designed to help users browse, manage, and track a wide range of gadgets effortlessly. The project focuses on delivering a sleek user experience with a clean interface, fast performance, and scalable architecture. Whether it's organizing gadget information, exploring new devices, or integrating with external services, Gadget Galaxy aims to bring everything together under one smart ecosystem.
 
-```bash
+## Live Link: 
+https://gadget-galaxy-pi.vercel.app/
+
+## 🚀 Features
+
+- 🛒 **Add to Cart** – Add gadgets to your shopping cart easily  
+- 🔍 **Smart Gadget Search** – Search gadgets by name or category
+- 🔼 **Update Quantity** – Increase or decrease product count  
+- ❌ **Remove Items** – Delete products from the cart anytime  
+- 💰 **Auto Price Update** – Total cost updates instantly  
+- 🔐 **Secure** – Safe user authentication  
+- 📱 **Responsive UI** – Works smoothly on all devices  
+
+## 🛠️ Tech Stack
+
+- ⚛️ **React**
+- 🌐 **Next.js**
+- 🎨 **Tailwind CSS**
+- 🔐 **Authentication**
+
+### ⚙️ Installation
+1 : Clone the Repository with bash
+https://github.com/rasel3980/gadget-galaxy.git
+cd gadget-galaxy
+
+2 : Install Dependencies
+npm install
+
+3 : Run the Project
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📸 Screenshots
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![Homepage](./public/home.png)
+![Products Page](./public/products.png)
+![Cart Page](./public/cart.png)

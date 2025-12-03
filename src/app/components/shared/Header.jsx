@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import SignOut from "../../(authPages)/login/SignOut";
 import Register from "@/app/(authPages)/login/Register";
 import Image from "next/image";
+import logo from "../../../../public/logo.png"
 
 const Header = () => {
   const cartItems = useSelector((state)=>state.cart.items)
@@ -59,7 +60,10 @@ const Header = () => {
             {navLinks}
           </ul>
         </div>
-        <Link href={'/'} className="btn btn-ghost md:text-2xl text-xl font-bold">Gadget Galaxy</Link>
+        <div className="flex items-center">
+          <Image alt="Logo" width={50} height={50} src={logo}></Image>
+        <Link href={'/'} className=" md:text-3xl text-xl font-bold">Gadget Galaxy</Link>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
