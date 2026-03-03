@@ -13,7 +13,7 @@ import Image from "next/image";
 import logo from "../../../../public/logo.png";
 import type { RootState } from "@/app/redux/store";
 
-// ১. NavItems কে মেইন কম্পোনেন্টের বাইরে নিয়ে আসা হয়েছে (Fixes the Error)
+
 const NavItems = ({ 
   pathname, 
   className = "" 
@@ -59,7 +59,6 @@ const Header: React.FC = () => {
     <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="navbar container mx-auto md:px-6 px-2">
         
-        {/* Navbar Start: Mobile Menu & Logo */}
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden p-1">
@@ -69,7 +68,6 @@ const Header: React.FC = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-64 p-4 shadow-xl gap-4"
             >
-              {/* Props হিসেবে pathname পাঠানো হচ্ছে */}
               <NavItems pathname={pathname} className="flex-col gap-4" />
             </ul>
           </div>
@@ -83,13 +81,9 @@ const Header: React.FC = () => {
             </span>
           </Link>
         </div>
-
-        {/* Navbar Center: Desktop Menu */}
         <div className="navbar-center hidden lg:flex">
           <NavItems pathname={pathname} className="flex-row gap-8" />
         </div>
-
-        {/* Navbar End: Cart & Auth */}
         <div className="navbar-end flex items-center gap-3 md:gap-6">
           <div
             onClick={() => router.push("/cart")}
