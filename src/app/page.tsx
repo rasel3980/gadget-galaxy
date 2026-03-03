@@ -9,6 +9,7 @@ import LoadingSpinner from "./loading";
 import type { RootState, AppDispatch } from "./redux/store";
 import Link from "next/link";
 import Features from "./components/Features";
+import NewsLetter from "./components/NewsLetter";
 
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
@@ -55,6 +56,7 @@ export default function Home() {
           </button>
         </Link>
       </div>
+      <NewsLetter></NewsLetter>
     </div>
   );
 }
