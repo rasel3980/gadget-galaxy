@@ -1,14 +1,11 @@
 'use client'
 import { signIn } from 'next-auth/react';
-import React from 'react';
 import { FiLogIn, FiUserPlus } from "react-icons/fi";
 
 const Register = () => {
   return (
     <div className="min-h-[60vh] flex flex-col justify-center items-center px-4 bg-gray-50">
       <div className="bg-white p-10 rounded-[2.5rem] shadow-2xl border border-gray-100 w-full max-w-md text-center">
-        
-        {/* আইকন এবং হেডার */}
         <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transform rotate-3">
           <FiUserPlus size={40} />
         </div>
@@ -19,8 +16,6 @@ const Register = () => {
         <p className="text-gray-500 font-medium mb-8">
           Access exclusive gadgets and professional gear.
         </p>
-
-        {/* লগইন বাটন - আপনার সিগনেচার শার্প কর্নার ফরম্যাট */}
         <button 
           onClick={() => signIn()}
           className="group w-full flex items-center justify-center gap-3 py-4 bg-blue-600 hover:bg-blue-800 text-white rounded-tr-2xl rounded-bl-2xl font-black uppercase tracking-widest transition-all shadow-lg shadow-blue-100 active:scale-95"
