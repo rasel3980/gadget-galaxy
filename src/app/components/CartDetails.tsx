@@ -9,11 +9,11 @@ import {
 } from "@/app/redux/features/CartSlice"
 import Image from "next/image"
 import React from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux" // useSelector অপ্রয়োজনীয় এখানে
 import Swal from "sweetalert2"
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci"
 import { MdDelete } from "react-icons/md"
-import type { RootState, AppDispatch } from "@/app/redux/store"
+import type { AppDispatch } from "@/app/redux/store"
 
 interface CartDetailsProps {
   item: CartItem
@@ -21,12 +21,13 @@ interface CartDetailsProps {
 
 const CartDetails: React.FC<CartDetailsProps> = ({ item }) => {
   const dispatch = useDispatch<AppDispatch>()
-  const { items } = useSelector((state: RootState) => state.cart)
+
+  const productId = String(item.id);
 
   const handleDelete = () => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: "btn btn-success",
+        confirmButton: "btn btn-success ml-3",
         cancelButton: "btn btn-danger",
       },
       buttonsStyling: false,
@@ -44,7 +45,7 @@ const CartDetails: React.FC<CartDetailsProps> = ({ item }) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          dispatch(deleteCart(item.id))
+          dispatch(deleteCart(productId))
           swalWithBootstrapButtons.fire({
             title: "Deleted!😰",
             text: "Your Product has been deleted.",
@@ -61,65 +62,64 @@ const CartDetails: React.FC<CartDetailsProps> = ({ item }) => {
   }
 
   return (
-    <div className="bg-base-100 px-3 flex items-center justify-between shadow-sm hover:shadow-md hover:shadow-red-400 mt-10">
+    <div className="bg-base-100 px-4 py-3 flex items-center justify-between shadow-sm hover:shadow-md hover:border-red-400 border border-transparent rounded-xl transition-all duration-300 mt-5">
       <div className="flex items-center md:gap-8 gap-3">
-        <figure className="flex md:gap-4 gap-2 items-center">
+        <div className="flex md:gap-4 gap-2 items-center">
           <input
-            onChange={() => dispatch(toggleSelected(item.id))}
+            onChange={() => dispatch(toggleSelected(productId))}
             checked={item.selected || false}
-            className="md:w-6 md:h-6"
+            className="checkbox checkbox-primary md:w-6 md:h-6"
             type="checkbox"
           />
-          <Image
-            width={100}
-            height={300}
-            src={item.image}
-            alt={item.title}
-          />
-        </figure>
+          <div className="w-16 h-16 md:w-24 md:h-24 relative bg-gray-50 rounded-lg overflow-hidden">
+            <Image
+              fill
+              className="object-contain p-2"
+              src={item.image}
+              alt={item.title}
+            />
+          </div>
+        </div>
 
         <div>
-          <h2 className="md:card-title text-sm md:text-lg">
+          <h2 className="md:card-title text-sm md:text-lg font-bold text-gray-800">
             {item.title}
-            <div className="md:badge hidden md:block md:badge-secondary">
+            <span className="hidden md:inline-flex badge badge-secondary badge-sm ml-2">
               {item.brand}
-            </div>
+            </span>
           </h2>
 
-          <p className="md:text-md text-xs font-bold">
-            Price: ${item.price}
+          <p className="text-blue-600 font-bold">
+            ${item.price}
           </p>
         </div>
       </div>
 
-      <div>
-        <div className="md:card-actions flex items-center justify-center md:gap-10 gap-4">
-          <div>
-            <MdDelete
-              size={25}
-              onClick={handleDelete}
-              className="text-red-600 cursor-pointer"
-            />
-          </div>
+      <div className="flex items-center md:gap-10 gap-4">
+          <MdDelete
+            size={25}
+            onClick={handleDelete}
+            className="text-red-500 cursor-pointer hover:scale-110 transition-transform"
+          />
 
-          <div className="flex items-center justify-center gap-2 md:gap-5">
-            <p
-              onClick={() => dispatch(decrementQuantity(item.id))}
-              className="cursor-pointer"
+          <div className="flex items-center bg-gray-100 rounded-full px-2 py-1 gap-3 md:gap-5">
+            <button
+              onClick={() => dispatch(decrementQuantity(productId))}
+              className="hover:text-blue-600 transition-colors"
+              disabled={item.cartQuantity <= 1}
             >
-              <CiCircleMinus size={30} />
-            </p>
+              <CiCircleMinus size={28} className={item.cartQuantity <= 1 ? "text-gray-300" : ""} />
+            </button>
 
-            <p className="text-xl">{item.cartQuantity || 0}</p>
+            <span className="text-lg font-bold w-4 text-center">{item.cartQuantity || 0}</span>
 
-            <p
-              onClick={() => dispatch(incrementQuantity(item.id))}
-              className="cursor-pointer"
+            <button
+              onClick={() => dispatch(incrementQuantity(productId))}
+              className="hover:text-blue-600 transition-colors"
             >
-              <CiCirclePlus size={30} />
-            </p>
+              <CiCirclePlus size={28} />
+            </button>
           </div>
-        </div>
       </div>
     </div>
   )

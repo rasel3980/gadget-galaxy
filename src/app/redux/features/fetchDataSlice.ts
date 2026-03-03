@@ -2,21 +2,26 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export interface Product {
-  id: string;
-  name: string;
+  id: number | string; 
   title: string;
-  image: string;
-  brand: string;
   description: string;
-  quantity: number;
   price: number;
-  isPopular?: boolean;
+  quantity: number;
+  cartQuantity: number;
+  category: string;
+  brand: string;
+  rating: number;
+  image: string;
+  createdAt: string;
+  isPopular: boolean;
 }
+
 interface FetchDataState {
   items: Product[];
   loading: boolean;
   error: string | null;
 }
+
 const initialState: FetchDataState = {
   items: [],
   loading: false,
@@ -35,8 +40,9 @@ const fetchDataSlice = createSlice({
   name: "fetchData",
   initialState,
   reducers: {
-    stockReduce: (state, action: PayloadAction<string>) => {
-      const item = state.items.find(p => p.id === action.payload);
+    stockReduce: (state, action: PayloadAction<string | number>) => {
+      const item = state.items.find(p => String(p.id) === String(action.payload));
+      
       if (item && item.quantity > 0) {
         item.quantity -= 1;
       }

@@ -1,12 +1,13 @@
 'use client'
 export const dynamic = "force-dynamic";
+import LoadingSpinner from '@/app/loading';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 
 const UserProfile = () => {
     const {data:session,status} = useSession()
     if(status === "loading"){
-        return <p>Loading........</p>
+        return <LoadingSpinner></LoadingSpinner>
     }
     return (
         <div className='flex justify-center items-center flex-col mt-12 border w-1/3 mx-auto py-5'>

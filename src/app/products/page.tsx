@@ -69,7 +69,7 @@ const Products: React.FC = () => {
         </div>
       ) : (
         <div className="text-center py-20">
-          <h3 className="text-xl text-gray-400 font-medium">No gadgets found matching "{search}"</h3>
+          <h3 className="text-xl text-gray-400 font-medium">No gadgets found matching {search}</h3>
           <button 
             onClick={() => setSearch("")}
             className="text-blue-600 hover:underline mt-2"

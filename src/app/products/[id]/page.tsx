@@ -1,5 +1,6 @@
 'use client'
 
+import React from "react" 
 import NotFoundPage from "@/app/not-found"
 import Image from "next/image"
 import { useDispatch, useSelector } from "react-redux"
@@ -9,22 +10,22 @@ import { stockReduce, Product } from "@/app/redux/features/fetchDataSlice"
 import type { RootState, AppDispatch } from "@/app/redux/store"
 
 interface ProductDetailsProps {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }> 
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ params }) => {
   const dispatch = useDispatch<AppDispatch>()
   const { items, loading, error } = useSelector((state: RootState) => state.data)
-  const { id } = params
 
-  // find product
-  const product = items.find((p: Product) => p.id === id)
-  const updateProduct = product ? items.find((p: Product) => p.id === product.id) : undefined
+  const resolvedParams = React.use(params)
+  const id = resolvedParams.id
 
-  if (loading) return <p>Loading.......</p>
-  if (error) return <p>{error}</p>
+  const product = items.find((p: Product) => String(p.id) === String(id))
+  
+  const updateProduct = product ? items.find((p: Product) => String(p.id) === String(product.id)) : undefined
+
+  if (loading) return <p className="text-center mt-10 text-xl font-bold">Loading.......</p>
+  if (error) return <p className="text-center mt-10 text-red-500">{error}</p>
 
   const handleAddToCart = () => {
     if (!updateProduct || updateProduct.quantity <= 0) {
@@ -40,7 +41,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ params }) => {
       return
     }
 
-    dispatch(addToCart(product!))
+    dispatch(addToCart(product as any))
     dispatch(stockReduce(product!.id))
 
     Swal.fire({
@@ -54,27 +55,37 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ params }) => {
 
   if (product) {
     return (
-      <div>
-        <h1 className="text-2xl font-bold text-center">Products details</h1>
-        <div className="card bg-base-100 mx-auto w-96 shadow-lg hover:shadow-red-600 mt-10">
-          <figure>
-            <Image width={400} height={500} src={product.image} alt={product.title} />
+      <div className="py-10">
+        <h1 className="text-3xl font-black text-center mb-6">Product Details</h1>
+        <div className="card bg-base-100 mx-auto w-96 shadow-xl hover:shadow-2xl transition-all border border-gray-100">
+          <figure className="px-4 pt-4">
+            <Image 
+              width={400} 
+              height={500} 
+              src={product.image} 
+              alt={product.title} 
+              className="rounded-xl object-cover h-64 w-full"
+            />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">
+            <h2 className="card-title text-2xl font-bold">
               {product.title}
-              <div className="badge badge-secondary">{product.brand}</div>
+              <div className="badge badge-secondary text-xs">{product.brand}</div>
             </h2>
-            <p>{product.description}</p>
-            <p>Brand: {product.brand}</p>
-            <p>Stock: {product.quantity}</p>
-            <p>Rating: {product.rating}</p>
-            <p>Price: ${product.price}</p>
-            <div className="card-actions justify-end gap-4">
-              <button className="px-4 py-1 hover:bg-blue-900 rounded-tr-2xl rounded-bl-2xl bg-blue-600 text-white rounded cursor-pointer">
+            <p className="text-gray-500 text-sm">{product.description}</p>
+            
+            <div className="space-y-1 my-4 bg-gray-50 p-3 rounded-lg">
+               <p className="text-sm"><strong>Brand:</strong> {product.brand}</p>
+               <p className="text-sm"><strong>Stock:</strong> <span className={product.quantity > 0 ? 'text-green-600' : 'text-red-500'}>{product.quantity} units left</span></p>
+               <p className="text-sm"><strong>Rating:</strong> ⭐ {product.rating}</p>
+               <p className="text-2xl font-black text-blue-600 mt-2">${product.price}</p>
+            </div>
+
+            <div className="card-actions justify-between mt-4">
+              <button className="btn btn-outline btn-info flex-1 rounded-xl">
                 Buy Now
               </button>
-              <button onClick={handleAddToCart} className="px-4 py-1 hover:bg-blue-900 rounded-tr-2xl rounded-bl-2xl bg-blue-600 text-white rounded cursor-pointer">
+              <button onClick={handleAddToCart} className="btn btn-primary flex-1 rounded-xl">
                 Add to Cart
               </button>
             </div>
