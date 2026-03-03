@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Product } from './fetchDataSlice';
+import { RootState } from '../store'; // আপনার স্টোর থেকে RootState ইমপোর্ট করুন
 
 export interface CartItem extends Product {
   cartQuantity: number; 
@@ -51,6 +52,29 @@ export const CartSlice = createSlice({
     },
   }
 })
+
+// --- সিলেক্টর লজিক এখানে থাকবে ---
+
+// ১. কার্টের সব আইটেম পাওয়ার জন্য
+export const selectCartItems = (state: RootState) => state.cart.items;
+
+// ২. শুধুমাত্র সিলেক্ট করা আইটেমগুলোর টোটাল প্রাইস
+export const selectTotalPrice = (state: RootState) => 
+  state.cart.items
+    .filter(item => item.selected)
+    .reduce((sum, item) => sum + (item.price * item.cartQuantity), 0)
+    .toFixed(2);
+
+// ৩. শুধুমাত্র সিলেক্ট করা আইটেমগুলোর টোটাল সংখ্যা
+export const selectTotalQuantity = (state: RootState) => 
+  state.cart.items
+    .filter(item => item.selected)
+    .reduce((sum, item) => sum + item.cartQuantity, 0);
+
+// ৪. কার্ট আইকনে দেখানোর জন্য (সিলেক্টেড হোক বা না হোক) সব আইটেমের সংখ্যা
+export const selectCartBadgeCount = (state: RootState) => 
+  state.cart.items.reduce((sum, item) => sum + item.cartQuantity, 0);
+
 
 export const {
   addToCart,
