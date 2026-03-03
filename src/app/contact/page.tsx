@@ -1,32 +1,41 @@
-'use client';
-import React, { useState } from 'react';
-import Swal from 'sweetalert2';
+'use client'
 
+import React, { useState } from 'react'
+import Swal from 'sweetalert2'
 
+interface ContactFormData {
+  name: string
+  email: string
+  message: string
+}
 
-const ContactUs = () => {
-  const [formData, setFormData] = useState({
+const ContactUs: React.FC = () => {
+
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     message: ''
-  });
+  })
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
-    });
-  };
+    })
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
     if (!formData.name || !formData.email || !formData.message) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Please fill in all fields!',
-      });
-      return;
+      })
+      return
     }
 
     Swal.fire({
@@ -35,22 +44,25 @@ const ContactUs = () => {
       text: 'Thank you for contacting Gadget Galaxy.',
       timer: 2000,
       showConfirmButton: false,
-    });
+    })
 
-    setFormData({ name: '', email: '', message: '' });
-  };
+    setFormData({ name: '', email: '', message: '' })
+  }
 
   return (
     <div className="bg-gray-50 min-h-screen py-16 px-5">
       <div className="max-w-4xl mx-auto bg-white p-10 rounded-xl shadow-md">
+
         <h1 className="text-4xl font-bold text-center text-gray-800">
           Contact <span className="text-blue-600">Us</span>
         </h1>
+
         <p className="text-center text-gray-600 mt-2 mb-8">
           Have questions or feedback? We’d love to hear from you!
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
+
           <div>
             <label className="block text-gray-700 mb-2">Name</label>
             <input
@@ -58,7 +70,7 @@ const ContactUs = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full border rounded px-4 py-2 "
+              className="w-full border rounded px-4 py-2"
               placeholder="Your Name"
             />
           </div>
@@ -70,7 +82,7 @@ const ContactUs = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full border rounded px-4 py-2 "
+              className="w-full border rounded px-4 py-2"
               placeholder="Your Email"
             />
           </div>
@@ -81,7 +93,7 @@ const ContactUs = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full border rounded px-4 py-2 h-32 "
+              className="w-full border rounded px-4 py-2 h-32"
               placeholder="Your Message"
             />
           </div>
@@ -94,10 +106,11 @@ const ContactUs = () => {
               Send Message
             </button>
           </div>
+
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ContactUs;
+export default ContactUs

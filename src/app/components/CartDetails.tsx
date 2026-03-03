@@ -1,22 +1,27 @@
-"use client";
+'use client'
+
 import {
   decrementQuantity,
   deleteCart,
   incrementQuantity,
   toggleSelected,
-} from "@/app/redux/features/CartSlice";
-import Image from "next/image";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
-import { CiCirclePlus } from "react-icons/ci";
-import { CiCircleMinus } from "react-icons/ci";
-import { MdDelete } from "react-icons/md";
+  CartItem
+} from "@/app/redux/features/CartSlice"
+import Image from "next/image"
+import React from "react"
+import { useDispatch, useSelector } from "react-redux"
+import Swal from "sweetalert2"
+import { CiCirclePlus, CiCircleMinus } from "react-icons/ci"
+import { MdDelete } from "react-icons/md"
+import type { RootState, AppDispatch } from "@/app/redux/store"
 
-const CartDetails = ({ item }) => {
-  const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.cart) || {};
-  console.log("items" , items);
+interface CartDetailsProps {
+  item: CartItem
+}
+
+const CartDetails: React.FC<CartDetailsProps> = ({ item }) => {
+  const dispatch = useDispatch<AppDispatch>()
+  const { items } = useSelector((state: RootState) => state.cart)
 
   const handleDelete = () => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -25,7 +30,7 @@ const CartDetails = ({ item }) => {
         cancelButton: "btn btn-danger",
       },
       buttonsStyling: false,
-    });
+    })
 
     swalWithBootstrapButtons
       .fire({
@@ -39,50 +44,50 @@ const CartDetails = ({ item }) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          dispatch(deleteCart(item?.id));
+          dispatch(deleteCart(item.id))
           swalWithBootstrapButtons.fire({
             title: "Deleted!😰",
             text: "Your Product has been deleted.",
             icon: "success",
-          });
+          })
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire({
             title: "Cancelled",
             text: "Your Product is safe :)😎",
             icon: "error",
-          });
+          })
         }
-      });
-  };
+      })
+  }
 
   return (
     <div className="bg-base-100 px-3 flex items-center justify-between shadow-sm hover:shadow-md hover:shadow-red-400 mt-10">
       <div className="flex items-center md:gap-8 gap-3">
         <figure className="flex md:gap-4 gap-2 items-center">
           <input
-            onChange={() => dispatch(toggleSelected(item?.id))}
-            checked={item?.selected || false}
+            onChange={() => dispatch(toggleSelected(item.id))}
+            checked={item.selected || false}
             className="md:w-6 md:h-6"
             type="checkbox"
           />
           <Image
             width={100}
             height={300}
-            src={item?.image || ""}
-            alt={item?.title || ""}
+            src={item.image}
+            alt={item.title}
           />
         </figure>
 
         <div>
           <h2 className="md:card-title text-sm md:text-lg">
-            {item?.title}
+            {item.title}
             <div className="md:badge hidden md:block md:badge-secondary">
-              {item?.brand}
+              {item.brand}
             </div>
           </h2>
 
           <p className="md:text-md text-xs font-bold">
-            Price: ${item?.price || 0}
+            Price: ${item.price}
           </p>
         </div>
       </div>
@@ -99,16 +104,16 @@ const CartDetails = ({ item }) => {
 
           <div className="flex items-center justify-center gap-2 md:gap-5">
             <p
-              onClick={() => dispatch(decrementQuantity(item?.id))}
+              onClick={() => dispatch(decrementQuantity(item.id))}
               className="cursor-pointer"
             >
               <CiCircleMinus size={30} />
             </p>
 
-            <p className="text-xl">{item?.cartQuantity || 0}</p>
+            <p className="text-xl">{item.cartQuantity || 0}</p>
 
             <p
-              onClick={() => dispatch(incrementQuantity(item?.id))}
+              onClick={() => dispatch(incrementQuantity(item.id))}
               className="cursor-pointer"
             >
               <CiCirclePlus size={30} />
@@ -117,7 +122,7 @@ const CartDetails = ({ item }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartDetails;
+export default CartDetails
