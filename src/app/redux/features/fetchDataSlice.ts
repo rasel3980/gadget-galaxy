@@ -4,8 +4,12 @@ import axios from "axios";
 export interface Product {
   id: string;
   name: string;
+  title: string;
+  image: string;
+  brand: string;
+  description: string;
   quantity: number;
-  price?: number;
+  price: number;
   isPopular?: boolean;
 }
 interface FetchDataState {

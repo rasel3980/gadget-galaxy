@@ -1,11 +1,16 @@
-import React from 'react';
+"use client";
 
-const Loading = () => {
-    return (
-        <div className='text-center'>
-            <span className="loading loading-spinner text-error"></span>
-        </div>
-    );
+import Lottie from "lottie-react";
+import loaderAnimation from "../../public/Material wave loading.json"; 
+
+const LoadingSpinner = () => {
+  return (
+    <div className="flex flex-col justify-center items-center h-64 w-full">
+      <div className="w-48 h-48"> 
+        <Lottie animationData={loaderAnimation} loop={true} />
+      </div>
+    </div>
+  );
 };
 
-export default Loading;
+export default LoadingSpinner;
