@@ -36,7 +36,7 @@ const NewsLetter = () => {
           </div>
 
           <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter mb-4">
-            DON'T MISS THE <span className="text-blue-500">BIGGEST</span> DEALS!
+            DONT MISS THE <span className="text-blue-500">BIGGEST</span> DEALS!
           </h2>
           
           <p className="text-gray-400 text-lg mb-10 leading-relaxed">

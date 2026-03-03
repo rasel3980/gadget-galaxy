@@ -38,7 +38,19 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
+        hostname: 'pietechnologie.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.notebookcheck.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'm.media-amazon.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.instax.in',
       },
     ],
   },

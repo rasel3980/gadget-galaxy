@@ -10,6 +10,7 @@ import type { RootState, AppDispatch } from "./redux/store";
 import Link from "next/link";
 import Features from "./components/Features";
 import NewsLetter from "./components/NewsLetter";
+import CategorySlider from "./components/CategorySlider";
 
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
@@ -41,6 +42,7 @@ export default function Home() {
     <div>
       <HomeCarousel />
       <Features></Features>
+      <CategorySlider></CategorySlider>
       <div className="grid md:grid-cols-3 justify-items-center gap-5 my-10 px-4">
         {filteredPopular.map((p: Product) => (
           <PopularProducts key={p.id} product={p} />
