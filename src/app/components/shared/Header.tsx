@@ -76,7 +76,7 @@ const Header: React.FC = () => {
             <div className="relative w-8 h-8 md:w-10 md:h-10 transition-transform group-hover:scale-110">
               <Image alt="Logo" fill src={logo} className="object-contain" />
             </div>
-            <span className="text-lg md:text-2xl font-extrabold bg-gradient-to-r from-blue-700 to-indigo-500 bg-clip-text text-transparent hidden sm:block">
+            <span className="text-lg md:text-2xl font-extrabold bg-linear-to-r from-blue-700 to-indigo-500 bg-clip-text text-transparent hidden sm:block">
               Gadget Galaxy
             </span>
           </Link>

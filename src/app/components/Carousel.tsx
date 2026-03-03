@@ -58,7 +58,7 @@ const HomeCarousel: React.FC = () => {
                 className="object-cover brightness-75 transition-transform duration-700 hover:scale-105"
                 priority
               />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 bg-gradient-to-t from-black/50 to-transparent">
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 bg-linear-to-t from-black/50 to-transparent">
                 <h2 className="text-3xl md:text-6xl font-black mb-2 animate__animated animate__fadeInDown">
                   {slide.title}
                 </h2>

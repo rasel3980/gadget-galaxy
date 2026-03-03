@@ -44,7 +44,7 @@ const Products: React.FC = () => {
       </div>
       <div className="flex justify-center mb-16 px-2">
         <div className="relative w-full max-w-2xl group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+          <div className="absolute -inset-1 bg-linear-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
           
           <div className="relative flex items-center">
             <FiSearch className="absolute left-5 text-gray-400 text-xl group-hover:text-blue-600 transition-colors" />
