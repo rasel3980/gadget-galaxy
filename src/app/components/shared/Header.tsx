@@ -61,7 +61,7 @@ const Header: React.FC = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden p-1 mr-2 bg-blue-300 hover:bg-blue-700 rounded-md text-white"
+              className="btn lg:hidden px-1 mr-2 bg-gray-300 rounded-md hover:text-blue-700 text-blue-600"
             >
               <HiMenuAlt1 className="text-2xl" />
             </div>
@@ -77,7 +77,7 @@ const Header: React.FC = () => {
           </div>
 
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-9 h-9 md:w-11 md:h-11 transition-transform group-hover:rotate-12">
+            <div className="relative w-12 h-12 md:w-11 md:h-11 transition-transform group-hover:rotate-12">
               <Image alt="Logo" fill src={logo} className="object-contain" />
             </div>
             <div className="flex flex-col leading-none">
