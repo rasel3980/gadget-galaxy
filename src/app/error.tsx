@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 
 const Error = ({ error, reset }: { error: Error; reset: () => void }) => {

@@ -9,7 +9,7 @@ import {
 } from "@/app/redux/features/CartSlice"
 import Image from "next/image"
 import React from "react"
-import { useDispatch } from "react-redux" // useSelector অপ্রয়োজনীয় এখানে
+import { useDispatch } from "react-redux"
 import Swal from "sweetalert2"
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci"
 import { MdDelete } from "react-icons/md"

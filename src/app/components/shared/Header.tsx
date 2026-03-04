@@ -61,7 +61,7 @@ const Header: React.FC = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden p-1 mr-2 bg-gray-50 rounded-xl"
+              className="btn btn-ghost lg:hidden p-1 mr-2 bg-blue-500 hover:bg-blue-700 rounded-md text-white"
             >
               <HiMenuAlt1 className="text-2xl" />
             </div>
@@ -138,7 +138,7 @@ const Header: React.FC = () => {
                   </p>
                 </div>
                 <li>
-                  <Link href="/profile" className="font-bold py-2">
+                  <Link href="user/profile" className="font-bold py-2">
                     Profile
                   </Link>
                 </li>
