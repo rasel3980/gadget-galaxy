@@ -61,7 +61,7 @@ const Header: React.FC = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden p-1 mr-2 bg-blue-500 hover:bg-blue-700 rounded-md text-white"
+              className="btn btn-ghost lg:hidden p-1 mr-2 bg-blue-300 hover:bg-blue-700 rounded-md text-white"
             >
               <HiMenuAlt1 className="text-2xl" />
             </div>
