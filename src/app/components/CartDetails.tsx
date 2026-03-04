@@ -82,7 +82,7 @@ const CartDetails: React.FC<CartDetailsProps> = ({ item }) => {
         </div>
 
         <div>
-          <h2 className="md:card-title text-sm md:text-lg font-bold text-gray-800">
+          <h2 className="md:card-title text-sm md:text-lg font-bold text-white">
             {item.title}
             <span className="hidden md:inline-flex badge badge-secondary badge-sm ml-2">
               {item.brand}
@@ -102,20 +102,18 @@ const CartDetails: React.FC<CartDetailsProps> = ({ item }) => {
             className="text-red-500 cursor-pointer hover:scale-110 transition-transform"
           />
 
-          <div className="flex items-center bg-gray-100 rounded-full px-2 py-1 gap-3 md:gap-5">
+          <div className="flex items-center bg-blue-600 rounded-full px-2 py-1 gap-3 md:gap-5">
             <button
               onClick={() => dispatch(decrementQuantity(productId))}
-              className="hover:text-blue-600 transition-colors"
               disabled={item.cartQuantity <= 1}
             >
               <CiCircleMinus size={28} className={item.cartQuantity <= 1 ? "text-gray-300" : ""} />
             </button>
 
-            <span className="text-lg font-bold w-4 text-center">{item.cartQuantity || 0}</span>
+            <span className="text-lg font-bold text-white w-4 text-center">{item.cartQuantity || 0}</span>
 
             <button
               onClick={() => dispatch(incrementQuantity(productId))}
-              className="hover:text-blue-600 transition-colors"
             >
               <CiCirclePlus size={28} />
             </button>

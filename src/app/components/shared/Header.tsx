@@ -138,12 +138,12 @@ const Header: React.FC = () => {
                   </p>
                 </div>
                 <li>
-                  <Link href="user/profile" className="font-bold py-2">
+                  <Link href="user/profile" className="font-bold text-blue-600 py-2">
                     Profile
                   </Link>
                 </li>
                 <li>
-                  <Link href="/user-dashboard" className="font-bold py-2">
+                  <Link href="/user-dashboard" className="font-bold text-blue-600 py-2">
                     Dashboard
                   </Link>
                 </li>
